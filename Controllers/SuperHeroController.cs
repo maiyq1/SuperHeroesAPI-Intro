@@ -32,7 +32,7 @@ namespace Test2.Controllers
             },
         };
         [HttpGet(Name = "GetSuperheroes")]
-        public async Task<ActionResult<List<SuperHero>>> GetAllHeroes()
+        public async Task<ActionResult<SuperHero>> GetAllHeroes()
         {
             return Ok(superHeroes);
         }
@@ -44,6 +44,13 @@ namespace Test2.Controllers
             if (hero is null)
                 return NotFound("Sorry, but this hero doesn't exists.");
             return Ok(hero);
+        }
+        
+        [HttpPost]
+        public async Task<ActionResult<List<SuperHero>>> AddHero(SuperHero newHero)
+        {
+            superHeroes.Add(newHero);
+            return Ok(superHeroes);
         }
     }
 }
